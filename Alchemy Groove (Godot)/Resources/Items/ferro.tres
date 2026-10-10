@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b5kt5mcpj2b2e"]
+
+[ext_resource type="Texture2D" uid="uid://dcicexaghc17" path="res://Assets/Sprites/Items/minerio de ferro.png" id="1_50k6a"]
+[ext_resource type="Script" uid="uid://dyscwx47sytrr" path="res://Assets/Scripts/Item/Resource/ItemData.gd" id="1_veewp"]
+
+[resource]
+script = ExtResource("1_veewp")
+id = 6
+name = "Ferro"
+item_sprite = ExtResource("1_50k6a")
+metadata/_custom_type_script = "uid://dyscwx47sytrr"

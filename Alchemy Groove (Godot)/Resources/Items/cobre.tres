@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c6sai1oks4r61"]
+
+[ext_resource type="Script" uid="uid://dyscwx47sytrr" path="res://Assets/Scripts/Item/Resource/ItemData.gd" id="1_mmyhy"]
+[ext_resource type="Texture2D" uid="uid://blmjackyp5m28" path="res://Assets/Sprites/Items/minerio de cobre.png" id="1_plo5g"]
+
+[resource]
+script = ExtResource("1_mmyhy")
+id = 4
+name = "Cobre"
+item_sprite = ExtResource("1_plo5g")
+metadata/_custom_type_script = "uid://dyscwx47sytrr"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://blphvgla53ajd"]
+
+[ext_resource type="Texture2D" uid="uid://cpkclhw4hjvs7" path="res://Assets/Sprites/Items/folha azul.png" id="1_2dl68"]
+[ext_resource type="Script" uid="uid://dyscwx47sytrr" path="res://Assets/Scripts/Item/Resource/ItemData.gd" id="1_f4sgj"]
+
+[resource]
+script = ExtResource("1_f4sgj")
+id = 1
+name = "Folha Azul"
+item_sprite = ExtResource("1_2dl68")
+metadata/_custom_type_script = "uid://dyscwx47sytrr"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cf2t7lwkv45jl"]
+
+[ext_resource type="Script" uid="uid://dyscwx47sytrr" path="res://Assets/Scripts/Item/Resource/ItemData.gd" id="1_ebn01"]
+[ext_resource type="Texture2D" uid="uid://cnn6nefm20b45" path="res://Assets/Sprites/Items/folha brasil.png" id="1_ppqim"]
+
+[resource]
+script = ExtResource("1_ebn01")
+id = 3
+name = "Folha Brasil"
+item_sprite = ExtResource("1_ppqim")
+metadata/_custom_type_script = "uid://dyscwx47sytrr"

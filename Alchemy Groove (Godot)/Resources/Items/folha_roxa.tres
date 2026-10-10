@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b6427dphqfovt"]
+
+[ext_resource type="Texture2D" uid="uid://bnnhpqfj18hfn" path="res://Assets/Sprites/Items/folha roxa.png" id="1_7gdpx"]
+[ext_resource type="Script" uid="uid://dyscwx47sytrr" path="res://Assets/Scripts/Item/Resource/ItemData.gd" id="1_cnojg"]
+
+[resource]
+script = ExtResource("1_cnojg")
+id = 2
+ingredients = Array[int]([1, 4])
+name = "Folha Roxa"
+item_sprite = ExtResource("1_7gdpx")
+metadata/_custom_type_script = "uid://dyscwx47sytrr"

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b1u0al8np7lvg"]
+
+[ext_resource type="Script" uid="uid://c1ayqrg21lqgp" path="res://Assets/Scripts/Item/Handlers/ItemHandler.gd" id="1_owqg2"]
+[ext_resource type="Texture2D" uid="uid://cpkclhw4hjvs7" path="res://Assets/Sprites/Items/folha azul.png" id="2_s3h57"]
+[ext_resource type="Script" uid="uid://b2utfapd1hwo2" path="res://Assets/Scripts/UI/InteractableHover.gd" id="3_s3h57"]
+[ext_resource type="AudioStream" uid="uid://gvwvs8m25wyr" path="res://Assets/Audio/SFX/OnHover.wav" id="4_fa10q"]
+
+[node name="Item" type="Control" unique_id=1319269561]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+script = ExtResource("1_owqg2")
+_selected_color = Color(1, 1, 1, 0.6313726)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1273064581 node_paths=PackedStringArray("_audio_stream_player")]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("2_s3h57")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_s3h57")
+_audio_stream_player = NodePath("../AudioStreamPlayer2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=4939076]
+stream = ExtResource("4_fa10q")

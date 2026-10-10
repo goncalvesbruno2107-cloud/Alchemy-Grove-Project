@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dr6g57rxp2vxd"]
+
+[ext_resource type="Texture2D" uid="uid://4tylvm6tqk8t" path="res://Assets/Sprites/Items/minerio de ouro.png" id="1_5cno3"]
+[ext_resource type="Script" uid="uid://dyscwx47sytrr" path="res://Assets/Scripts/Item/Resource/ItemData.gd" id="1_nk33v"]
+
+[resource]
+script = ExtResource("1_nk33v")
+id = 5
+ingredients = Array[int]([3, 6])
+name = "Ouro"
+item_sprite = ExtResource("1_5cno3")
+metadata/_custom_type_script = "uid://dyscwx47sytrr"

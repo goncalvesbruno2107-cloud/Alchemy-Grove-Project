@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ehfx80m06le"]
+
+[ext_resource type="Texture2D" uid="uid://kiqtyfewasqq" path="res://Assets/Sprites/UI/Inventory/Inventory Slot.png" id="1_ugnor"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j8lct"]
+texture = ExtResource("1_ugnor")
+
+[node name="Slot" type="PanelContainer" unique_id=1937024325]
+custom_minimum_size = Vector2(36, 36)
+offset_right = 36.0
+offset_bottom = 36.0
+pivot_offset = Vector2(18, 18)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_j8lct")
