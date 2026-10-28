@@ -1,6 +1,7 @@
 extends Node
 
 @export var starter_package: Array[ItemData] = []
+var scene_manager:SceneManager = null
 
 func _ready() -> void:
 	load_item_database()
@@ -39,4 +40,6 @@ func add_starter_package() -> void:
 	for item in starter_package:
 		Inventory.add_to_inventory(item)
 		print(item.name + " added to Inventory")
-		pass
+
+func set_scene_manager(current: SceneManager) -> void:
+	scene_manager = current

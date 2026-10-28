@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bf12au35jfsh4"]
 
-[ext_resource type="Texture2D" uid="uid://dfkov1qwh7ty7" path="res://Assets/Sprites/Background/BG_512x288.png" id="1_7u1he"]
+[ext_resource type="Texture2D" uid="uid://dfkov1qwh7ty7" path="res://Assets/Sprites/Background/Cauldron Background.png" id="1_7u1he"]
+[ext_resource type="Script" uid="uid://cbgkd2hni0tmr" path="res://Assets/Scripts/Crafting/Temporario/ResetInventory.gd" id="1_quhif"]
 [ext_resource type="Script" uid="uid://cgds8ooksawv6" path="res://Assets/Scripts/UI/InventoryUI.gd" id="2_514qk"]
 [ext_resource type="Texture2D" uid="uid://q3e4ie5ag688" path="res://Assets/Sprites/UI/Inventory/Inventory Background.png" id="2_swknb"]
 [ext_resource type="PackedScene" uid="uid://b1u0al8np7lvg" path="res://Assets/Prefabs/Item.tscn" id="3_36vu1"]
@@ -12,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://cpkclhw4hjvs7" path="res://Assets/Sprites/Items/folha azul.png" id="8_g4k4h"]
 [ext_resource type="Texture2D" uid="uid://ccuvaldn3svtp" path="res://Assets/Sprites/Props/Spoon.png" id="10_vio4d"]
 [ext_resource type="Script" uid="uid://b2utfapd1hwo2" path="res://Assets/Scripts/UI/InteractableHover.gd" id="11_tfvj3"]
+[ext_resource type="AudioStream" uid="uid://4xe4b6cuiebp" path="res://Assets/Audio/OSTs/Crafting Song.wav" id="13_g4k4h"]
+[ext_resource type="Texture2D" uid="uid://csfr4jdr1653u" path="res://Assets/Sprites/Transitions/Scene Transition.png" id="13_la4gw"]
+[ext_resource type="FontFile" uid="uid://7jir7gl6v7hk" path="res://Assets/Fonts/Peaberry-Font-v2.0/Peaberry Font Family/Peaberry Base/PeaberryBase.woff" id="13_vug30"]
 
 [sub_resource type="Animation" id="Animation_a1r77"]
 resource_name = "Moving Background"
@@ -291,7 +295,133 @@ _bundled = {
 "version": 3
 }
 
-[node name="Crafting Scene" type="Node2D" unique_id=414209558]
+[sub_resource type="Animation" id="Animation_hnoqu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionRect:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_dkalm"]
+resource_name = "TransitionActive"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5707963267948966]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionRect:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(28, 28)]
+}
+
+[sub_resource type="Animation" id="Animation_vug30"]
+resource_name = "TransitionPost"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(28, 28), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5707963267948966, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_quhif"]
+_data = {
+&"RESET": SubResource("Animation_hnoqu"),
+&"TransitionActive": SubResource("Animation_dkalm"),
+&"TransitionPost": SubResource("Animation_vug30")
+}
+
+[node name="Crafting Scene" type="Node2D" unique_id=414209558 node_paths=PackedStringArray("crafting_station")]
+script = ExtResource("1_quhif")
+crafting_station = NodePath("CanvasLayer/Cauldron/CraftingStation")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=548706155]
 
@@ -439,7 +569,7 @@ layout_mode = 2
 [node name="Slot16" parent="CanvasLayer/Inventory UI/InventoryBackground/GridContainer" unique_id=1260552947 instance=ExtResource("3_swknb")]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CanvasLayer" unique_id=1814502652]
+[node name="Spoon" type="Button" parent="CanvasLayer" unique_id=1814502652]
 offset_left = 448.0
 offset_top = 64.0
 offset_right = 494.0
@@ -450,4 +580,53 @@ icon = ExtResource("10_vio4d")
 flat = true
 script = ExtResource("11_tfvj3")
 
-[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Cauldron" method="try_baking"]
+[node name="Reset Button" type="Button" parent="CanvasLayer" unique_id=243740352]
+offset_left = 408.0
+offset_top = 16.0
+offset_right = 516.0
+offset_bottom = 56.0
+pivot_offset = Vector2(108, 20)
+theme_override_fonts/font = ExtResource("13_vug30")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Reset"
+script = ExtResource("11_tfvj3")
+
+[node name="Scene Transition" type="Control" parent="CanvasLayer" unique_id=1713830184]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TransitionRect" type="TextureRect" parent="CanvasLayer/Scene Transition" unique_id=1905490146]
+visible = false
+visibility_layer = 3
+z_index = 2
+custom_minimum_size = Vector2(32, 32)
+custom_maximum_size = Vector2(1000, 1000)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 240.00002
+offset_top = 128.00005
+offset_right = 272.0
+offset_bottom = 160.00005
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(16, 16)
+mouse_filter = 0
+mouse_behavior_recursive = 2
+texture = ExtResource("13_la4gw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Scene Transition" unique_id=1561018562]
+libraries/ = SubResource("AnimationLibrary_quhif")
+autoplay = &"TransitionPost"
+
+[node name="OST" type="AudioStreamPlayer2D" parent="." unique_id=429546464]
+stream = ExtResource("13_g4k4h")
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/Spoon" to="CanvasLayer/Cauldron" method="try_baking"]
+[connection signal="button_down" from="CanvasLayer/Reset Button" to="." method="_reset_inventory"]

@@ -1,0 +1,304 @@
+[gd_scene format=3 uid="uid://bjd6xt85b6etb"]
+
+[ext_resource type="Script" uid="uid://cs6ox5mt5lfya" path="res://Assets/Scripts/Menu/MenuManager.gd" id="1_hnoqu"]
+[ext_resource type="Texture2D" uid="uid://dmc88qpi27e50" path="res://Assets/Sprites/Background/Menu Background.png" id="1_trrmg"]
+[ext_resource type="FontFile" uid="uid://c1l7vh42id4r3" path="res://Assets/Fonts/dirty_brush_2/DirtyBrush.ttf" id="2_sph7x"]
+[ext_resource type="Script" uid="uid://b2utfapd1hwo2" path="res://Assets/Scripts/UI/InteractableHover.gd" id="3_j1b4o"]
+[ext_resource type="AudioStream" uid="uid://eblcm3po6vns" path="res://Assets/Audio/OSTs/Overdriven Heat.wav" id="3_pkw8u"]
+[ext_resource type="Texture2D" uid="uid://csfr4jdr1653u" path="res://Assets/Sprites/Transitions/Scene Transition.png" id="4_fjdk5"]
+[ext_resource type="FontFile" uid="uid://c0eqgdnc5j8k8" path="res://Assets/Fonts/Peaberry-Font-v2.0/Peaberry Font Family/Peaberry Doublespace/Peaberry-Doublespace.otf" id="7_dkalm"]
+
+[sub_resource type="Animation" id="Animation_trrmg"]
+resource_name = "Moving Background"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 512, 288), Rect2(32, 32, 512, 288)]
+}
+
+[sub_resource type="Animation" id="Animation_sph7x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pkw8u"]
+_data = {
+&"Moving Background": SubResource("Animation_trrmg"),
+&"RESET": SubResource("Animation_sph7x")
+}
+
+[sub_resource type="Animation" id="Animation_hnoqu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionRect:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_dkalm"]
+resource_name = "TransitionActive"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionRect:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5707963267948966]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionRect:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(28, 28)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vd8hb"]
+_data = {
+&"RESET": SubResource("Animation_hnoqu"),
+&"TransitionActive": SubResource("Animation_dkalm")
+}
+
+[node name="Menu" type="Node2D" unique_id=2049200310 node_paths=PackedStringArray("canvas_groups", "anim_player")]
+script = ExtResource("1_hnoqu")
+canvas_groups = [NodePath("MainOptionsGroup"), NodePath("CreditsGroup")]
+anim_player = NodePath("Scene Transition/AnimationPlayer")
+
+[node name="Background" type="Node2D" parent="." unique_id=1821307471]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=1183846477]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(256, 144)
+texture = ExtResource("1_trrmg")
+region_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background" unique_id=2091429549]
+libraries/ = SubResource("AnimationLibrary_pkw8u")
+autoplay = &"Moving Background"
+
+[node name="MainOptionsGroup" type="CanvasGroup" parent="." unique_id=1007999791]
+
+[node name="Title" type="Label" parent="MainOptionsGroup" unique_id=143199578]
+texture_filter = 1
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 471.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(1, 0.675, 0.25, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/font = ExtResource("2_sph7x")
+theme_override_font_sizes/font_size = 64
+text = "Alchemy Groove"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Play Button" type="Button" parent="MainOptionsGroup" unique_id=95838115]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 320.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 17)
+action_mode = 0
+text = "Play"
+script = ExtResource("3_j1b4o")
+metadata/_edit_use_anchors_ = true
+
+[node name="Credits Button" type="Button" parent="MainOptionsGroup" unique_id=1518409796]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 192.0
+offset_top = 160.0
+offset_right = 320.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 16)
+text = "Credits"
+script = ExtResource("3_j1b4o")
+metadata/_edit_use_anchors_ = true
+
+[node name="Quit Button" type="Button" parent="MainOptionsGroup" unique_id=1645993156]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 192.0
+offset_top = 192.0
+offset_right = 320.0
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 16)
+action_mode = 0
+text = "Quit"
+icon_alignment = 1
+script = ExtResource("3_j1b4o")
+metadata/_edit_use_anchors_ = true
+
+[node name="CreditsGroup" type="CanvasGroup" parent="." unique_id=1258285437]
+visible = false
+
+[node name="Credits Label" type="Label" parent="CreditsGroup" unique_id=356859721]
+offset_left = 176.0
+offset_right = 346.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(1, 0.6745098, 0.2509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 31
+theme_override_fonts/font = ExtResource("2_sph7x")
+theme_override_font_sizes/font_size = 48
+text = "Made By:"
+
+[node name="Credits" type="Label" parent="CreditsGroup" unique_id=592552541]
+offset_left = 176.0
+offset_top = 96.0
+offset_right = 328.0
+offset_bottom = 246.0
+theme_override_colors/font_color = Color(1, 0.6745098, 0.2509804, 1)
+theme_override_constants/line_spacing = 8
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/outline_size = 11
+theme_override_fonts/font = ExtResource("2_sph7x")
+theme_override_font_sizes/font_size = 21
+text = "Andre Takeo
+Bruno Gonçalves
+Felipe Delfino
+Gabriel Venancio
+Jose Alfredo"
+
+[node name="Back Button" type="Button" parent="CreditsGroup" unique_id=54894238]
+offset_left = 24.0
+offset_top = 240.0
+offset_right = 96.0
+offset_bottom = 271.0
+pivot_offset = Vector2(0, 16)
+theme_override_fonts/font = ExtResource("7_dkalm")
+text = "< Back"
+script = ExtResource("3_j1b4o")
+
+[node name="Scene Transition" type="Control" parent="." unique_id=1289195754]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TransitionRect" type="TextureRect" parent="Scene Transition" unique_id=145634054]
+visible = false
+visibility_layer = 3
+z_index = 2
+custom_minimum_size = Vector2(32, 32)
+custom_maximum_size = Vector2(1000, 1000)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 240.00002
+offset_top = 128.00005
+offset_right = 272.0
+offset_bottom = 160.00005
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(16, 16)
+mouse_filter = 0
+mouse_behavior_recursive = 2
+texture = ExtResource("4_fjdk5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Scene Transition" unique_id=560199382]
+libraries/ = SubResource("AnimationLibrary_vd8hb")
+
+[node name="Sound Manager" type="Node2D" parent="." unique_id=688319962]
+
+[node name="OST" type="AudioStreamPlayer2D" parent="Sound Manager" unique_id=554358686]
+stream = ExtResource("3_pkw8u")
+autoplay = true
+
+[connection signal="pressed" from="MainOptionsGroup/Play Button" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainOptionsGroup/Credits Button" to="." method="change_canvas_group" binds= [1]]
+[connection signal="pressed" from="MainOptionsGroup/Quit Button" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CreditsGroup/Back Button" to="." method="change_canvas_group" binds= [0]]
+[connection signal="animation_finished" from="Scene Transition/AnimationPlayer" to="." method="_on_transition_finished"]

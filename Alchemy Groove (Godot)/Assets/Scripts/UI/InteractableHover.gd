@@ -1,7 +1,6 @@
 extends Control
 class_name InteractableHover
 
-@export var _audio_stream_player: AudioStreamPlayer2D
 @export var expand_factor: float = 0.1
 
 var _original_scale:Vector2

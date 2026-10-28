@@ -1,14 +1,11 @@
 [gd_scene format=3 uid="uid://o1i2gqmwfydj"]
 
-[ext_resource type="PackedScene" uid="uid://bf12au35jfsh4" path="res://Assets/Scenes/crafting_scene.tscn" id="3_ltsxh"]
-[ext_resource type="AudioStream" uid="uid://4xe4b6cuiebp" path="res://Assets/Audio/OSTs/Crafting Song.wav" id="5_ltsxh"]
+[ext_resource type="Script" uid="uid://3hrmlw4ig37n" path="res://Assets/Scripts/GameManagement/SceneManager.gd" id="1_cycvv"]
+[ext_resource type="PackedScene" uid="uid://bjd6xt85b6etb" path="res://Assets/Scenes/menu.tscn" id="2_dgnlb"]
 
 [node name="Game" type="Node2D" unique_id=80779282]
 
-[node name="Crafting Scene" parent="." unique_id=414209558 instance=ExtResource("3_ltsxh")]
+[node name="SceneManager" type="Node2D" parent="." unique_id=1021740487]
+script = ExtResource("1_cycvv")
 
-[node name="OSTs" type="AudioStreamPlayer2D" parent="Crafting Scene" unique_id=516444317]
-stream = ExtResource("5_ltsxh")
-autoplay = true
-
-[editable path="Crafting Scene"]
+[node name="Menu" parent="." unique_id=2049200310 instance=ExtResource("2_dgnlb")]
